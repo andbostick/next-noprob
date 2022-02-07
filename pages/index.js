@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Image from 'next/image'
 import LargeGrid from '../components/LargeGrid'
+import PostsGrid from '../components/PostsGrid'
 
 
 export default function Home() {
@@ -14,6 +15,8 @@ export default function Home() {
       </Head>
       <Header />
       <LargeGrid />
+      <PostsGrid />
+      <PostsGrid />
     </div>
   )
 }
