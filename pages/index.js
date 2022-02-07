@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from '../components/Header'
 import Image from 'next/image'
+import LargeGrid from '../components/LargeGrid'
 
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <LargeGrid />
     </div>
   )
 }

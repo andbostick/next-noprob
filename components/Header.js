@@ -22,7 +22,6 @@ export default function Header() {
             your problems on the floor at the door.
           </p>
           <p>
-            {" "}
             The mission is to spread motivation to those that already workout as
             well as motivation and encouragement to those who are trying to get
             into fitness.
@@ -42,8 +41,6 @@ export default function Header() {
 
         .container {
           padding: 0 2rem;
-          background-color: black;
-          color: white;
         }
 
         .main {
