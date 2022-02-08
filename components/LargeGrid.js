@@ -22,6 +22,20 @@ export default function LargePost() {
             .text-box{
                 padding: 2rem;
             }
+            @media(min-width:1280px){
+                main {
+                  margin: 0 100px 50px 100px;
+
+                }
+                  section{
+                    display:grid;
+                    grid-template-columns: 30% 1fr;
+                  }
+                  .image{
+                      height: 100%;
+                  }
+                  
+              }
             `}</style>
         </main>
     )

@@ -13,7 +13,7 @@ export default function PostsGrid() {
                 padding: 0 2rem;
             }
             section{
-                margin: 2rem 0;
+                // margin: 2rem 0;
                 padding: 2rem 0;
                 display: grid;
                 grid-template-columns: 30% 1fr;
@@ -24,6 +24,26 @@ export default function PostsGrid() {
             .image{
                 
                 background-color: white;
+            }
+            @media(min-width:1280px){
+                main{
+                    padding: 0;
+                    
+                }
+                section{
+                    
+                    border-bottom: solid grey 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                   
+                }
+                .image{
+                    height: 200px;
+                    width: 100%;
+                    background-color: white;
+                }
+
             }
             `}</style>
         </main>
