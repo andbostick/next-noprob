@@ -5,15 +5,18 @@ export default function PostsGrid() {
                 <div className="image"></div>
                 <div>
             <h2>Title</h2>
-                    <p>Short Description</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper felis sed quam tempus, eget aliquet est viverra.</p>
                     </div>
             </section>
             <style jsx>{`
             main{
                 padding: 0 2rem;
+                font-family: 'Amaranth', sans-serif;
+            }
+            p{
+                font-family: 'Montserrat', sans-serif;
             }
             section{
-                // margin: 2rem 0;
                 padding: 2rem 0;
                 display: grid;
                 grid-template-columns: 30% 1fr;

@@ -72,14 +72,16 @@ export default function Header() {
         .title {
           margin: 0;
           line-height: 1.15;
-          font-size: 2rem;
+          font-size: 4rem;
           color: #d47a69;
+          font-family: 'Amaranth', sans-serif;
         }
 
         .description {
           margin: 4rem 0;
           line-height: 1.5;
           font-size: 1.2rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .card {
@@ -91,6 +93,7 @@ export default function Header() {
           text-decoration: none;
           text-align: center;
           border-radius: 10px;
+          font-family: 'Montserrat', sans-serif;
         }
         .card p {
           margin: 0;
