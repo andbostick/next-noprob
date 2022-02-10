@@ -25,7 +25,7 @@ export default function LargePost() {
             }
             @media(min-width:1280px){
                 main {
-                  margin: 0 100px 50px 100px;
+                  margin: 0 0 50px 0;
                   font-family: 'Amaranth', sans-serif;
                 }
                   section{
