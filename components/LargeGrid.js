@@ -1,24 +1,28 @@
+import NextImage from './Image';
 
-export default function LargePost() {
+export default function LargePost({articles}) {
+     const recentPost = articles[articles.length - 1].attributes;
+    
     return (
         <main>
             <section className="large-post">
-                <div className="image"></div>
+            <NextImage image={recentPost.image}/>
                 <div className="text-box">
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque semper felis sed quam tempus, eget aliquet est viverra. Quisque aliquet quam at tellus dictum, eget euismod sem pulvinar. </h2>
+                    <h2>{recentPost.title}</h2>
+                    <p>{recentPost.description}</p>
                 </div>
             </section>
-
+            
             <style jsx>{`
             .large-post{
-                background-color:blue;
-                
+                background-color: #2E2A2A;
                 width: 100%;
             }
-            .image{
-                background-color: grey;
-                height: 200px;
+            
+            h2{
+                color: #D47A69;
             }
+
             .text-box{
                 padding: 2rem;
                 font-size: 12px;
@@ -31,6 +35,7 @@ export default function LargePost() {
                   section{
                     display:grid;
                     grid-template-columns: 30% 1fr;
+                    
                   }
                   .image{
                       height: 100%;
