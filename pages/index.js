@@ -6,10 +6,11 @@ import PostsGrid from "../components/PostsGrid";
 import { fetchAPI } from "../lib/api";
 
 export default function Home({ categories, articles, homepage }) {
-  console.log(categories)
+  
   return (
     <main>
       <Header />
+      <h1>{homepage.attributes.hero.title}</h1>
       <LargeGrid articles={articles} />
       <section>
         <PostsGrid articles={articles}/>
