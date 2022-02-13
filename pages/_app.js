@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <GlobalContext.Provider value={global.attributes}>
+      <GlobalContext.Provider >
         <Component {...pageProps} />
       </GlobalContext.Provider>
     </>

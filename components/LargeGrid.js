@@ -6,10 +6,10 @@ export default function LargePost({articles}) {
     return (
         <main>
             <section className="large-post">
-            <NextImage image={recentPost.image}/>
+            <NextImage image={recentPost?.image}/>
                 <div className="text-box">
-                    <h2>{recentPost.title}</h2>
-                    <p>{recentPost.description}</p>
+                    <h2>{recentPost?.title}</h2>
+                    <p>{recentPost?.description}</p>
                 </div>
             </section>
             

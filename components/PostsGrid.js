@@ -8,13 +8,13 @@ export default function PostsGrid({ articles }) {
     <>
       {articles.map((article) => {
         return (
-          <main key={article.attributes.title}>
+          <main key={article?.attributes.title}>
             <section>
-              <NextImage image={article.attributes.image} />
+              <NextImage image={article?.attributes.image} />
 
               <div>
-                <h2>{article.attributes.title}</h2>
-                <p>{article.attributes.description}</p>
+                <h2>{article?.attributes.title}</h2>
+                <p>{article?.attributes.description}</p>
               </div>
             </section>
           </main>
