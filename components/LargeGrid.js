@@ -1,7 +1,7 @@
 import NextImage from './Image';
 
 export default function LargePost({articles}) {
-     const recentPost = articles[articles.length - 1].attributes;
+     const recentPost = articles[articles?.length - 1].attributes;
     
     return (
         <main>

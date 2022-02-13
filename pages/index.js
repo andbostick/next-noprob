@@ -5,12 +5,13 @@ import LargeGrid from "../components/LargeGrid";
 import PostsGrid from "../components/PostsGrid";
 import { fetchAPI } from "../lib/api";
 
-export default function Home({ categories, articles, homepage }) {
-  
+export default function Home({ categories, articles}) {
+  console.log(articles)
+  console.log(categories)
   return (
     <main>
       <Header />
-      <h1>{homepage.attributes.hero.title}</h1>
+      
       <LargeGrid articles={articles} />
       <section>
         <PostsGrid articles={articles}/>
@@ -32,25 +33,20 @@ export default function Home({ categories, articles, homepage }) {
   );
 }
 
-// export async function getStaticProps() {
-//   // Run API calls in parallel
-//   const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
-//     fetchAPI("/articles", { populate: ["image", "category"] }),
-//     fetchAPI("/categories", { populate: "*" }),
-//     fetchAPI("/homepage", {
-//       populate: {
-//         hero: "*",
-//         seo: { populate: "*" },
-//       },
-//     }),
-//   ]);
+export async function getStaticProps() {
+  // Run API calls in parallel
+  const [articlesRes, categoriesRes,] = await Promise.all([
+    fetchAPI("/articles", { populate: ["image", "category"] }),
+    fetchAPI("/categories", { populate: "*" }),
+   ,
+  ]);
 
-//   return {
-//     props: {
-//       articles: articlesRes.data,
-//       categories: categoriesRes.data,
-//       homepage: homepageRes.data,
-//     },
-//     revalidate: 1,
-//   };
-// }
+  return {
+    props: {
+      articles: articlesRes.data,
+      categories: categoriesRes.data,
+      
+    },
+    revalidate: 1,
+  };
+}
