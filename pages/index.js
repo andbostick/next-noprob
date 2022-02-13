@@ -32,25 +32,25 @@ export default function Home({ categories, articles, homepage }) {
   );
 }
 
-export async function getStaticProps() {
-  // Run API calls in parallel
-  const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
-    fetchAPI("/articles", { populate: ["image", "category"] }),
-    fetchAPI("/categories", { populate: "*" }),
-    fetchAPI("/homepage", {
-      populate: {
-        hero: "*",
-        seo: { populate: "*" },
-      },
-    }),
-  ]);
+// export async function getStaticProps() {
+//   // Run API calls in parallel
+//   const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
+//     fetchAPI("/articles", { populate: ["image", "category"] }),
+//     fetchAPI("/categories", { populate: "*" }),
+//     fetchAPI("/homepage", {
+//       populate: {
+//         hero: "*",
+//         seo: { populate: "*" },
+//       },
+//     }),
+//   ]);
 
-  return {
-    props: {
-      articles: articlesRes.data,
-      categories: categoriesRes.data,
-      homepage: homepageRes.data,
-    },
-    revalidate: 1,
-  };
-}
+//   return {
+//     props: {
+//       articles: articlesRes.data,
+//       categories: categoriesRes.data,
+//       homepage: homepageRes.data,
+//     },
+//     revalidate: 1,
+//   };
+// }
