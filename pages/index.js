@@ -3,18 +3,20 @@ import Header from "../components/Header";
 import Image from "next/image";
 import LargeGrid from "../components/LargeGrid";
 import PostsGrid from "../components/PostsGrid";
-import { fetchAPI } from "../lib/api";
+import client from "../client";
 
-export default function Home({ categories, articles}) {
-  console.log(articles)
-  console.log(categories)
+
+
+export default function Home({post}) {
+  console.log(post)
+  console.log(post[0].slug.current)
   return (
     <main>
       <Header />
       
-      <LargeGrid articles={articles} />
+      <LargeGrid articles={post} />
       <section>
-        <PostsGrid articles={articles}/>
+        <PostsGrid articles={post}/>
       </section>
       <style jsx>{`
         @media (min-width: 1280px) {
@@ -33,20 +35,16 @@ export default function Home({ categories, articles}) {
   );
 }
 
-export async function getStaticProps() {
-  // Run API calls in parallel
-  const [articlesRes, categoriesRes,] = await Promise.all([
-    fetchAPI("/articles", { populate: ["image", "category"] }),
-    fetchAPI("/categories", { populate: "*" }),
-   ,
-  ]);
 
+
+export async function getStaticProps() {
+  
+  const post = await client.fetch(`
+    *[_type == "post"]
+  `)
   return {
     props: {
-      articles: articlesRes.data,
-      categories: categoriesRes.data,
-      
-    },
-    revalidate: 1,
-  };
+      post
+    }
+  }
 }

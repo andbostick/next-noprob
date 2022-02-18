@@ -1,20 +1,21 @@
-import NextImage from "./Image";
+import client from '../client'
 
-export default function PostsGrid({ articles }) {
+export default function PostsGrid({ articles, slug }) {
   articles.map((article) => {
-    console.log(article.attributes);
+    console.log(article);
   });
   return (
     <>
       {articles.map((article) => {
         return (
-          <main key={article?.attributes.title}>
+          <main key={article?.title}>
             <section>
-              <NextImage image={article?.attributes.image} />
+              
 
               <div>
-                <h2>{article?.attributes.title}</h2>
-                <p>{article?.attributes.description}</p>
+                <h2>{article?.title}</h2>
+                <p>{article?.description}</p>
+                <a>{article?.slug?.current}</a>
               </div>
             </section>
           </main>
@@ -58,4 +59,6 @@ export default function PostsGrid({ articles }) {
       `}</style>
     </>
   );
+  
 }
+

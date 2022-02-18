@@ -1,12 +1,12 @@
-import NextImage from './Image';
+
 
 export default function LargePost({articles}) {
-     const recentPost = articles[articles?.length - 1].attributes;
+     const recentPost = articles[0];
     
     return (
         <main>
             <section className="large-post">
-            <NextImage image={recentPost?.image}/>
+            
                 <div className="text-box">
                     <h2>{recentPost?.title}</h2>
                     <p>{recentPost?.description}</p>
