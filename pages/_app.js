@@ -21,10 +21,7 @@ function MyApp({ Component, pageProps }) {
           href="https://fonts.gstatic.com"
           crossOrigin="true"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Amaranth&family=Cambay&family=Montserrat&display=swap"
-          rel="stylesheet"
-        />
+        
       </Head>
       <GlobalContext.Provider>
         <Component {...pageProps} />

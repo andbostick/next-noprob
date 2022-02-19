@@ -1,6 +1,15 @@
 import client from '../client'
+import Link from 'next/link'
+import ImageUrlBuilder from "@sanity/image-url";
 
-export default function PostsGrid({ articles, slug }) {
+const builder = ImageUrlBuilder(client);
+
+function urlFor(source) {
+  return builder.image(source);
+}
+
+
+export default function PostsGrid({ articles}) {
   articles.map((article) => {
     console.log(article);
   });
@@ -10,12 +19,23 @@ export default function PostsGrid({ articles, slug }) {
         return (
           <main key={article?.title}>
             <section>
-              
+            {article.mainImage && (
+              <div className="image-box">
+                <img
+                  src={urlFor(article?.mainImage?.asset?._ref)
+                    
+                    .auto("format")
+                    .fit("scale")
+                    .url()}
+                  alt="baner image"
+                />
+              </div>
+            )}
 
               <div>
-                <h2>{article?.title}</h2>
-                <p>{article?.description}</p>
-                <a>{article?.slug?.current}</a>
+                <Link href='/post/[slug]' as={`/post/${article?.slug?.current}`}>
+                <a><h2>{article?.title}</h2></a>
+                  </Link>
               </div>
             </section>
           </main>
@@ -23,6 +43,9 @@ export default function PostsGrid({ articles, slug }) {
       })}
 
       <style jsx>{`
+      img{
+        width:100%;
+      }
         main {
           padding: 0 2rem;
           font-family: "Amaranth", sans-serif;

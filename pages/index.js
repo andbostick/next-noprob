@@ -1,22 +1,22 @@
 import Head from "next/head";
 import Header from "../components/Header";
-import Image from "next/image";
+import groq from 'groq'
 import LargeGrid from "../components/LargeGrid";
 import PostsGrid from "../components/PostsGrid";
 import client from "../client";
 
 
 
-export default function Home({post}) {
-  console.log(post)
-  console.log(post[0].slug.current)
+export default function Home({posts}) {
+  console.log(posts)
+  
   return (
     <main>
       <Header />
       
-      <LargeGrid articles={post} />
+      <LargeGrid articles={posts} />
       <section>
-        <PostsGrid articles={post}/>
+        <PostsGrid articles={posts}/>
       </section>
       <style jsx>{`
         @media (min-width: 1280px) {
@@ -39,12 +39,12 @@ export default function Home({post}) {
 
 export async function getStaticProps() {
   
-  const post = await client.fetch(`
-    *[_type == "post"]
+  const posts = await client.fetch(groq`
+    *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
   `)
   return {
     props: {
-      post
+      posts
     }
   }
 }
