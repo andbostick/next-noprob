@@ -27,12 +27,13 @@ const ptComponents = {
 };
 
 const Post = ({ post }) => {
-  const { title='', name = "no name", categories, mainImage, body = [], publishedAt = ''} = post;
+  const { title='', name = "no name", mainImage, body = [], publishedAt = ''} = post;
   console.log(post);
   return (
     <article className="container">
-      <div className="text-box">
-        <h1>{title}</h1>
+          <div className="text-box">
+              {title && (<h1>{title}</h1>)}
+        
 
         <h2>{name}</h2>
         {new Date(publishedAt).toDateString()}
