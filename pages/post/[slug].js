@@ -27,7 +27,7 @@ const ptComponents = {
 };
 
 const Post = ({ post }) => {
-  const { title='', name = "no name", mainImage, body = [], publishedAt = ''} = post;
+  const { title='no title', name = "no name", mainImage, body = [], publishedAt = ''} = post;
   console.log(post);
   return (
     <article className="container">
