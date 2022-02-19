@@ -32,7 +32,7 @@ const Post = ({ post }) => {
   return (
     <article className="container">
           <div className="text-box">
-              <h1></h1>
+              <h1>{title}</h1>
         
 
         <h2>{name}</h2>
