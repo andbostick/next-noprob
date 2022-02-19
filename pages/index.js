@@ -4,11 +4,12 @@ import groq from 'groq'
 import LargeGrid from "../components/LargeGrid";
 import PostsGrid from "../components/PostsGrid";
 import client from "../client";
+import Link from "next/link";
 
 
 
 export default function Home({posts}) {
-  console.log(posts)
+  
   
   return (
     <main>
@@ -16,8 +17,10 @@ export default function Home({posts}) {
       
       <LargeGrid articles={posts} />
       <section>
-        <PostsGrid articles={posts}/>
+        <PostsGrid articles={posts} />
+       
       </section>
+      
       <style jsx>{`
         @media (min-width: 1280px) {
           main {

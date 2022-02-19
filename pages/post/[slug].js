@@ -28,11 +28,11 @@ const ptComponents = {
 
 const Post = ({ post }) => {
   const { title='no title', name = "no name", mainImage, body = [], publishedAt = ''} = post;
-  console.log(post);
+  
   return (
     <article className="container">
           <div className="text-box">
-              {title && (<h1>{title}</h1>)}
+              <h1></h1>
         
 
         <h2>{name}</h2>
@@ -87,12 +87,9 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post;
-
 const query = groq`*[_type == "post" && slug.current == $slug][0]{
     title,
     'name': author->name,
-    'categories': categories[]->title,
     mainImage,
     publishedAt,
     body
@@ -105,7 +102,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: true,
+    fallback: false,
   };
 }
 export async function getStaticProps(context) {
@@ -118,3 +115,7 @@ export async function getStaticProps(context) {
     },
   };
 }
+
+
+export default Post;
+
