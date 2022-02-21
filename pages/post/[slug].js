@@ -1,7 +1,9 @@
+import Link from "next/link";
 import groq from "groq";
 import ImageUrlBuilder from "@sanity/image-url";
 import client from "../../client";
 import { PortableText } from "@portabletext/react";
+import Player from "../../components/Player";
 
 const builder = ImageUrlBuilder(client);
 
@@ -27,43 +29,61 @@ const ptComponents = {
 };
 
 const Post = ({ post }) => {
-  const { title='no title', name = "no name", mainImage, body = [], publishedAt = ''} = post;
-  
+  const {
+    title = "no title",
+    name = "no name",
+    mainImage,
+    body = [],
+    publishedAt = "",
+  } = post;
+
   return (
     <article className="container">
-          <div className="text-box">
-              <h1>{title}</h1>
-        
-
-        <h2>{name}</h2>
-        {new Date(publishedAt).toDateString()}
+      <div className="text-box">
+        <Link href="/">
+          <a>
+            <h4 className="return"> Back Home</h4>
+          </a>
+        </Link>
+        <h1>{title}</h1>
+        <h2>By : {name}</h2>
+        <h2>{new Date(publishedAt).toDateString()}</h2>
       </div>
       {mainImage && (
         <div className="image-box">
           <img
-            src={urlFor(mainImage?.asset)
-              
-              .auto("format")
-              .fit("scale")
-              .url()}
+            src={urlFor(mainImage?.asset).auto("format").fit("scale").url()}
             alt="baner image"
           />
         </div>
       )}
-
+      <div className="player">
+        <Player videoId={"VcZiH0OdAaw"} />
+      </div>
       <div className="body-render">
         <PortableText value={body} components={ptComponents} />
       </div>
       <style jsx>{`
-        article {
-        }
         .text-box {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          padding: 64px;
-          font-family: "Amaranth", sans-serif;
-          font-size: 2rem;
+          padding: 12px;
+          font-family: "Montserrat", sans-serif;
+          font-size: 1.5rem;
+          text-align: center;
+        }
+        .return{
+            margin: 0;
+            text-align: left;
+            font-size:1rem;
+        }
+        h1 {
+          
+          font-size: 1.75rem;
+        }
+        h2 {
+          margin: 0.5em;
+          font-size: 1.25rem;
         }
         img {
           width: 100%;
@@ -74,12 +94,23 @@ const Post = ({ post }) => {
           font-family: "Montserrat", sans-serif;
         }
         @media screen and (min-width: 1280px) {
+          .player {
+            margin: auto;
+          }
           article {
             width: 75%;
             margin: 0 auto;
           }
           .body-render {
             width: 100%;
+          }
+          h1 {
+            margin: 0;
+            font-size: 2.5rem;
+          }
+          h2 {
+            margin: 0.5em;
+            font-size: 2rem;
           }
         }
       `}</style>
@@ -116,6 +147,4 @@ export async function getStaticProps(context) {
   };
 }
 
-
 export default Post;
-
