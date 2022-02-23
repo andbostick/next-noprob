@@ -1,5 +1,6 @@
 import client from "../client";
 import ImageUrlBuilder from "@sanity/image-url";
+import Link from "next/link";
 
 const builder = ImageUrlBuilder(client);
 
@@ -8,11 +9,12 @@ function urlFor(source) {
 }
 
 export default function LargePost({ articles }) {
-  const recentPost = articles[2];
+  const recentPost = articles[0];
 
   return (
     <main>
       <section className="large-post">
+      
         {recentPost.mainImage && (
           <img
             src={urlFor(recentPost?.mainImage?.asset?._ref)
@@ -22,21 +24,27 @@ export default function LargePost({ articles }) {
             alt="baner image"
           />
         )}
-
+        
         <div className="text-box">
-          <h2>{recentPost?.title}</h2>
-          <p>{recentPost?.description}</p>
-        </div>
+        <Link href='/post/[slug]' as={`/post/${recentPost?.slug?.current}`}>
+        
+        <a><h2>{recentPost?.title}</h2></a>
+          
+        </Link>
+          </div>
+          
       </section>
 
       <style jsx>{`
         .large-post {
           background-color: #2e2a2a;
           width: 100%;
+          
         }
 
         img {
           width: 100%;
+          
         }
 
         h2 {

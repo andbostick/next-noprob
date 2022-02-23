@@ -5,6 +5,7 @@ import LargeGrid from "../components/LargeGrid";
 import PostsGrid from "../components/PostsGrid";
 import client from "../client";
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 
 
@@ -20,7 +21,7 @@ export default function Home({posts}) {
         <PostsGrid articles={posts} />
        
       </section>
-      
+      <Footer />
       <style jsx>{`
         @media (min-width: 1280px) {
           main {

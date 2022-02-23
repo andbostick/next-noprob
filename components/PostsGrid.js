@@ -9,13 +9,13 @@ function urlFor(source) {
 }
 
 
-export default function PostsGrid({ articles}) {
-  articles.map((article) => {
-    console.log(article);
-  });
+export default function PostsGrid({ articles }) {
+ 
+  
+  
   return (
     <>
-      {articles.map((article) => {
+      {articles.slice(1).map((article) => {
         return (
           <main key={article?.title}>
             <section>
