@@ -35,8 +35,9 @@ const Post = ({ post }) => {
     mainImage,
     body = [],
     publishedAt = "",
+    ytURL,
   } = post;
-
+  console.log(post);
   return (
     <article className="container">
       <div className="text-box">
@@ -49,17 +50,23 @@ const Post = ({ post }) => {
         <h2>By : {name}</h2>
         <h2>{new Date(publishedAt).toDateString()}</h2>
       </div>
-      {mainImage && (
-        <div className="image-box">
-          <img
-            src={urlFor(mainImage?.asset).auto("format").fit("scale").url()}
-            alt="baner image"
-          />
-        </div>
-      )}
-      <div className="player">
-        <Player videoId={"VcZiH0OdAaw"} />
+
+      <div>
+        
+        {ytURL ? (
+          <div className="player">
+            <Player ytURL={ytURL} />
+          </div>
+        ) : (
+          <div className="image-box">
+            <img
+              src={urlFor(mainImage?.asset).auto("format").fit("scale").url()}
+              alt="baner image"
+            />
+          </div>
+        )}
       </div>
+
       <div className="body-render">
         <PortableText value={body} components={ptComponents} />
       </div>
@@ -72,13 +79,12 @@ const Post = ({ post }) => {
           font-size: 1.5rem;
           text-align: center;
         }
-        .return{
-            margin: 0;
-            text-align: left;
-            font-size:1rem;
+        .return {
+          margin: 0;
+          text-align: left;
+          font-size: 1rem;
         }
         h1 {
-          
           font-size: 1.75rem;
         }
         h2 {
@@ -123,7 +129,8 @@ const query = groq`*[_type == "post" && slug.current == $slug][0]{
     'name': author->name,
     mainImage,
     publishedAt,
-    body
+    body,
+    ytURL
 }`;
 
 export async function getStaticPaths() {

@@ -1,14 +1,15 @@
 import ReactPlayer from "react-player/youtube";
 
-export default function Player(props) {
-    const videoURL ="https://www.youtube.com/watch?v=" + props.videoId
+export default function Player({ytURL}) {
+    
     return (
         <div>
             <ReactPlayer
-            url={videoURL}
+            url={ytURL}
             playing={false}
-                onEnded={props.onEnd}
+                
                 width={'100%'}
+                height={500}
                 config={{
                     playerVars: {
                         autoplay: 1,
