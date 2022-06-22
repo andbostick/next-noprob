@@ -1,31 +1,42 @@
-export default function Header() {
+import { PortableText } from "@portabletext/react";
+
+const ptComponents = {
+  types: {
+    image: ({ value }) => {
+      if (!value?.asset?._ref) {
+        return null;
+      }
+      return (
+        <img
+          alt={value.alt || " "}
+          loading="lazy"
+          src={urlFor(value).width(320).height(240).fit("max").auto("format")}
+        />
+      );
+    },
+  },
+};
+
+export default function Header({ title }) {
+  const headerTitle = title[0].name;
+  const headerDesc = title[0].mainDesc;
+  const cardDesc = title[0].secDesc;
+
   return (
     <div className="container">
       <main className="main">
         <div className="text-box">
-          <h1 className="title">No Problems Fitness</h1>
+          <h1 className="title">{headerTitle}</h1>
 
-          <p className="description">
-            learn innovative new workouts, tips and advice on workouts at home,
-            things you can use at home for equipment, as well as workouts with
-            the family and for the busy parent like myself! Live life as if you
-            have no problems!
-          </p>
+          <div className="body-render description">
+            <PortableText value={headerDesc} components={ptComponents} />
+          </div>
         </div>
         <div className="circle"></div>
         <div className="card">
-          <p>
-            No Problems Fitness does not mean that you do not have any problems.
-          </p>
-          <p>
-            No Problems Fitness means that you focus on your workout, leaving
-            your problems on the floor at the door.
-          </p>
-          <p>
-            The mission is to spread motivation to those that already workout as
-            well as motivation and encouragement to those who are trying to get
-            into fitness.
-          </p>
+          <div className="body-render ">
+            <PortableText value={cardDesc} components={ptComponents} />
+          </div>
         </div>
       </main>
 
@@ -74,14 +85,14 @@ export default function Header() {
           line-height: 1.15;
           font-size: 4rem;
           color: #d47a69;
-          font-family: 'Amaranth', sans-serif;
+          font-family: "Amaranth", sans-serif;
         }
 
         .description {
           margin: 4rem 0;
           line-height: 1.5;
           font-size: 1.2rem;
-          font-family: 'Montserrat', sans-serif;
+          font-family: "Montserrat", sans-serif;
         }
 
         .card {
@@ -93,7 +104,7 @@ export default function Header() {
           text-decoration: none;
           text-align: center;
           border-radius: 10px;
-          font-family: 'Montserrat', sans-serif;
+          font-family: "Montserrat", sans-serif;
         }
         .card p {
           margin: 0;

@@ -9,12 +9,12 @@ import Footer from "../components/Footer";
 
 
 
-export default function Home({posts}) {
+export default function Home({posts,title}) {
   
   
   return (
     <main>
-      <Header />
+      <Header title={title}/>
       
       <LargeGrid articles={posts} />
       <section>
@@ -42,13 +42,15 @@ export default function Home({posts}) {
 
 
 export async function getStaticProps() {
-  
+  const title = await client.fetch(groq`
+  *[_type == 'main']`)
   const posts = await client.fetch(groq`
     *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
   `)
   return {
     props: {
-      posts
+      posts,
+      title
     }
   }
 }
