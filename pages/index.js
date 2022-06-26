@@ -15,6 +15,12 @@ export default function Home({ posts, title }) {
     return post.title.toLowerCase().includes(search);
   });
 
+  function handleSearchInput(e) {
+    let newSearch = {...search}
+    newSearch = e.target.value;
+    setSearch(newSearch);
+  }
+
   console.log(searchedPosts);
 
   return (
@@ -25,7 +31,7 @@ export default function Home({ posts, title }) {
         <input
           type="text"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={handleSearchInput}
         />
       </div>
 
