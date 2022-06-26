@@ -8,7 +8,7 @@ import client from "../client";
 import Footer from "../components/Footer";
 
 export default function Home({ posts, title }) {
-  const [search, setSearch] = useState('b');
+  const [search, setSearch] = useState('');
   useEffect(() => {
      
    
