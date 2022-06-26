@@ -10,21 +10,8 @@ import Footer from "../components/Footer";
 export default function Home({ posts, title }) {
   const [search, setSearch] = useState('b');
   useEffect(() => {
-   const searchPosts = async () => {
-      const post = await client.fetch(groq`
-    *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
-  `);
      
-     return {
-        props: {
-          post,
-          title,
-        },
-      }
-      
-   }
-    searchPosts()
-    console.log(post.title)
+   
   }, [search])
   
   let searchedPosts = posts.filter((post) => {
