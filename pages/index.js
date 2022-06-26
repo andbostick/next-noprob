@@ -8,8 +8,10 @@ import client from "../client";
 import Footer from "../components/Footer";
 
 export default function Home({ posts, title }) {
-  const [search, setSearch] = useState("");
-
+  const [search, setSearch] = useState('');
+  useEffect(() => {
+    setSearch(search)
+  }, [])
   console.log(posts);
   let searchedPosts = posts.filter((post) => {
     return post.title.toLowerCase().includes(search);
@@ -29,6 +31,7 @@ export default function Home({ posts, title }) {
       <div>
         <h2>Search through posts</h2>
         <input
+          placeholder="search"
           type="text"
           value={search}
           onChange={handleSearchInput}
