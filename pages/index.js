@@ -22,12 +22,16 @@ export default function Home({ posts, title }) {
     newSearch = e.target.value;
     setSearch(newSearch);
   }
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
 
   console.log(searchedPosts);
 
   return (
     <main>
       <Header title={title} />
+      <form onSubmit={handleSubmit}>
       <div>
         <h2>Search through posts</h2>
         <input
@@ -36,8 +40,9 @@ export default function Home({ posts, title }) {
           value={search}
           onChange={handleSearchInput}
         />
-      </div>
-
+        </div>
+        <button type="submit">Submit</button>
+      </form>
       {searchedPosts.length ? (
         <div>
           <LargeGrid articles={searchedPosts} />
