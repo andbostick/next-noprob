@@ -24,6 +24,7 @@ export default function Home({ posts, title }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    setSearch(search)
   }
 
   console.log(searchedPosts);
