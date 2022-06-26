@@ -8,11 +8,25 @@ import client from "../client";
 import Footer from "../components/Footer";
 
 export default function Home({ posts, title }) {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('b');
   useEffect(() => {
-    setSearch(search)
+   const searchPosts = async () => {
+      const post = await client.fetch(groq`
+    *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
+  `);
+     
+     return {
+        props: {
+          post,
+          title,
+        },
+      }
+      
+   }
+    searchPosts()
+    console.log(post.title)
   }, [search])
-  console.log(posts);
+  
   let searchedPosts = posts.filter((post) => {
     return post.title.toLowerCase().includes(search);
   });
@@ -25,9 +39,10 @@ export default function Home({ posts, title }) {
   function handleSubmit(e) {
     e.preventDefault();
     setSearch(search)
+    console.log(search)
   }
 
-  console.log(searchedPosts);
+  
 
   return (
     <main>
