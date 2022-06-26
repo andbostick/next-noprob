@@ -11,7 +11,7 @@ export default function Home({ posts, title }) {
   const [search, setSearch] = useState('');
   useEffect(() => {
     setSearch(search)
-  }, [])
+  }, [search])
   console.log(posts);
   let searchedPosts = posts.filter((post) => {
     return post.title.toLowerCase().includes(search);
