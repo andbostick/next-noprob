@@ -8,49 +8,64 @@ import client from "../client";
 import Footer from "../components/Footer";
 
 export default function Home({ posts, title }) {
-  const [search, setSearch] = useState('');
-  useEffect(() => {
-     
-   
-  }, [search])
+  const [search, setSearch] = useState("");
+  const [searchPost, setSearchPost] = useState("");
+  useEffect(() => {}, [search]);
+
+  async function searchPosts() {
+    const searched = await client.fetch(groq`
+  *[_type == 'post' && title match "${search}*"]
   
-  let searchedPosts = posts.filter((post) => {
-    return post.title.toLowerCase().includes(search);
-  });
+  `);
+
+    // console.log(searched);
+    return searched;
+  }
+  let searchedThrough = "";
+  const searchedPost = async () => {
+    try {
+      let res = await searchPosts();
+      searchedThrough = res;
+      setSearchPost(searchedThrough);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 
   function handleSearchInput(e) {
-    let newSearch = {...search}
+    let newSearch = { ...search };
     newSearch = e.target.value;
     setSearch(newSearch);
   }
   function handleSubmit(e) {
     e.preventDefault();
-    setSearch(search)
-    console.log(search)
+    searchedPost();
+    // console.log(stuff);
   }
 
-  
+ 
 
   return (
     <main>
       <Header title={title} />
       <form onSubmit={handleSubmit}>
-      <div>
-        <h2>Search through posts</h2>
-        <input
-          placeholder="search"
-          type="text"
-          value={search}
-          onChange={handleSearchInput}
-        />
+        <div>
+          <h2>Search through posts</h2>
+          <input
+            placeholder="search"
+            type="text"
+            value={search}
+            onChange={handleSearchInput}
+          />
         </div>
         <button type="submit">Submit</button>
       </form>
-      {searchedPosts.length ? (
+      {searchPost.length ? (
         <div>
-          <LargeGrid articles={searchedPosts} />
+          <LargeGrid articles={searchPost} />
           <section>
-            <PostsGrid articles={searchedPosts} />
+            <PostsGrid articles={searchPost} />
           </section>
         </div>
       ) : (
