@@ -6,61 +6,17 @@ import LargeGrid from "../components/LargeGrid";
 import PostsGrid from "../components/PostsGrid";
 import client from "../client";
 import Footer from "../components/Footer";
+import Search from "../components/Search";
 
 export default function Home({ posts, title }) {
   const [search, setSearch] = useState("");
   const [searchPost, setSearchPost] = useState("");
-  useEffect(() => {}, [search]);
-
-  async function searchPosts() {
-    const searched = await client.fetch(groq`
-  *[_type == 'post' && title match "${search}*"]
-  
-  `);
-
-    // console.log(searched);
-    return searched;
-  }
-  let searchedThrough = "";
-  const searchedPost = async () => {
-    try {
-      let res = await searchPosts();
-      searchedThrough = res;
-      setSearchPost(searchedThrough);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-
-  function handleSearchInput(e) {
-    let newSearch = { ...search };
-    newSearch = e.target.value;
-    setSearch(newSearch);
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    searchedPost();
-    // console.log(stuff);
-  }
-
+  const [reset, setReset] = useState(false);
  
-
   return (
     <main>
       <Header title={title} />
-      <form onSubmit={handleSubmit}>
-        <div>
-          <h2>Search through posts</h2>
-          <input
-            placeholder="search"
-            type="text"
-            value={search}
-            onChange={handleSearchInput}
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <Search setSearch={setSearch} setReset={setReset} setSearchPost={setSearchPost} reset={reset} search={search} searchPost={searchPost}/>
       {searchPost.length ? (
         <div>
           <LargeGrid articles={searchPost} />
