@@ -3,7 +3,7 @@ import client from "../client";
 import groq from "groq";
 
 export default function Search({setReset, reset, setSearch, search,setSearchPost,searchPost}) {
-  useEffect(() => {}, [search]);
+  
 
   async function searchPosts() {
     const searched = await client.fetch(groq`
@@ -40,7 +40,7 @@ export default function Search({setReset, reset, setSearch, search,setSearchPost
   function clearAll() {
     setReset(false);
     setSearch("");
-    setSearchPost("");
+    // setSearchPost("");
   }
 
   return (

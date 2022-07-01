@@ -10,28 +10,40 @@ import Search from "../components/Search";
 
 export default function Home({ posts, title }) {
   const [search, setSearch] = useState("");
-  const [searchPost, setSearchPost] = useState("");
+  const [searchPost, setSearchPost] = useState(null);
   const [reset, setReset] = useState(false);
- 
+  const [hasSearched, setHasSearched] = useState(false);
+
+  useEffect(() => {}, [search]);
   return (
     <main>
       <Header title={title} />
-      <Search setSearch={setSearch} setReset={setReset} setSearchPost={setSearchPost} reset={reset} search={search} searchPost={searchPost}/>
-      {searchPost.length ? (
-        <div>
-          <LargeGrid articles={searchPost} />
-          <section>
-            <PostsGrid articles={searchPost} />
-          </section>
-        </div>
-      ) : (
+      <Search
+        setSearch={setSearch}
+        setReset={setReset}
+        setSearchPost={setSearchPost}
+        reset={reset}
+        search={search}
+        searchPost={searchPost}
+      />
+      {searchPost === null ? (
         <div>
           <LargeGrid articles={posts} />
           <section>
             <PostsGrid articles={posts} />
           </section>
         </div>
+        
+      ) : (
+        <div>
+          <LargeGrid articles={searchPost} />
+          <section>
+            <PostsGrid articles={searchPost} />
+          </section>
+        </div>
       )}
+      
+
       <Footer />
       <style jsx>{`
         @media (min-width: 1280px) {
