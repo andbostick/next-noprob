@@ -40,7 +40,7 @@ export default function Search({setReset, reset, setSearch, search,setSearchPost
   function clearAll() {
     setReset(false);
     setSearch("");
-    // setSearchPost("");
+    setSearchPost("");
   }
 
   return (
