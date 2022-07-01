@@ -83,7 +83,7 @@ export async function getStaticProps() {
   const title = await client.fetch(groq`
   *[_type == 'main']`);
   const posts = await client.fetch(groq`
-    *[_type == "post" && publishedAt < now()] | order(publishedAt desc)
+    *[_type == "post" && publishedAt < now()] | order(publishedAt desc)[0...10]
   `);
 
   return {
