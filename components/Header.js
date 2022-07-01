@@ -1,6 +1,6 @@
 import { PortableText } from "@portabletext/react";
-import Image from 'next/image'
-import david from '../img/david.png'
+import Image from "next/image";
+import david from "../img/david-crop.png";
 
 const ptComponents = {
   types: {
@@ -34,8 +34,15 @@ export default function Header({ title }) {
             <PortableText value={headerDesc} components={ptComponents} />
           </div>
         </div>
-        <span className="profile" style={{maxHeight: '90%',borderRadius: '30%', overflow: 'hidden', }}>
-          <Image src={david} alt="Picture of David" layout='intrinsic' />
+        <span
+          className="profile"
+          style={{
+            backgroundColor: "white",
+            borderRadius: "60%",
+            overflow: "hidden",
+          }}
+        >
+          <Image src={david} alt="Picture of David" layout="intrinsic" />
         </span>
         <div className="card">
           <div className="body-render ">
@@ -47,16 +54,10 @@ export default function Header({ title }) {
       <footer className="footer"></footer>
       <style jsx>{`
         .profile {
-          
-          margin: 10%;
-          margin-top: 0;
-          
-          
-          
-          
+          width: 250px;
+          height: 250px;
+          margin: 0 auto 50px auto;
         }
-
-        
 
         .container {
           padding: 0 2rem;
@@ -127,8 +128,10 @@ export default function Header({ title }) {
             grid-template-columns: 1fr 1fr;
           }
 
-          .circle {
-            justify-self: center;
+          .profile {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto 0;
           }
 
           .text-box {
