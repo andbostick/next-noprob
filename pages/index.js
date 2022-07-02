@@ -12,18 +12,7 @@ export default function Home({ posts, title }) {
   const [search, setSearch] = useState("");
   const [searchPost, setSearchPost] = useState('');
   const [reset, setReset] = useState(false);
-  const [hasSearched, setHasSearched] = useState(false);
 
-  function NoResults(result) {
-    if (result.length < 0) {
-      console.log('no res');
-      <div>hello</div>
-    }
-    else { return '' }
-      
-  }
-  
-  
 
   useEffect(() => {}, [search]);
   return (
