@@ -32,7 +32,7 @@ const ptComponents = {
     link: ({children, value}) => {
       const rel = !value.href.startsWith('http') ? 'noreferrer noopener' : undefined
       return (
-        <a href={value.href} rel={rel} style={{ color: "#d47a69" }} target="_blank">
+        <a href={value.href} rel={rel} style={{ color: "#d47a69" }}>
           {children}
         </a>
     )
