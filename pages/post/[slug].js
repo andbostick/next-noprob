@@ -24,11 +24,24 @@ const ptComponents = {
           src={urlFor(value).width(320).height(240).fit("max").auto("format")}
         />
       );
-    },
+
+    }, 
+    
   },
+  marks: {
+    link: ({children, value}) => {
+      const rel = !value.href.startsWith('http') ? 'noreferrer noopener' : undefined
+      return (
+        <a href={value.href} rel={rel} style={{ color: "#d47a69" }} target="_blank">
+          {children}
+        </a>
+    )
+  },
+}
 };
 
 const Post = ({ post }) => {
+  console.log(post)
   const {
     title = "no title",
     name = "no name",
