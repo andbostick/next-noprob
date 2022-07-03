@@ -25,13 +25,18 @@ export default function LargePost({ articles }) {
           />
         )}
         
-        <div className="text-box">
-        <Link href='/post/[slug]' as={`/post/${recentPost?.slug?.current}`}>
+       
+        <Link href='/post/[slug]' as={`/post/${recentPost?.slug?.current}`} passHref>
         
-        <a><h2>{recentPost?.title}</h2></a>
+            <a >
+            <div className="text-box">
+              <h2>{recentPost?.title}</h2>
+              </div>
+            </a>
+        
+          </Link>
           
-        </Link>
-          </div>
+          
           
       </section>
 
@@ -74,6 +79,13 @@ export default function LargePost({ articles }) {
           }
           img {
             height: 100%;
+          }
+          .text-box:hover {
+            text-decoration: underline;
+          }
+          main:hover img
+          {
+            opacity: 0.3;
           }
         }
       `}</style>

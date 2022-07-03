@@ -19,7 +19,12 @@ export default function PostsGrid({ articles }) {
         return (
           <main key={article?.title}>
             <section>
-            {article.mainImage && (
+            
+
+              <div className='container'>
+                <Link href='/post/[slug]' as={`/post/${article?.slug?.current}`} passHref>
+                  <a>
+                  {article.mainImage && (
               <div className="image-box">
                 <img
                   src={urlFor(article?.mainImage?.asset?._ref)
@@ -31,10 +36,8 @@ export default function PostsGrid({ articles }) {
                 />
               </div>
             )}
-
-              <div>
-                <Link href='/post/[slug]' as={`/post/${article?.slug?.current}`}>
-                <a><h2>{article?.title}</h2></a>
+                    <h2>{article?.title}</h2>
+                  </a>
                   </Link>
               </div>
             </section>
@@ -77,6 +80,13 @@ export default function PostsGrid({ articles }) {
             display: flex;
             flex-direction: column;
             
+          }
+          .container:hover {
+            text-decoration: underline;
+          }
+          .container:hover img
+          {
+            opacity: 0.2;
           }
         }
       `}</style>
