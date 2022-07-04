@@ -64,21 +64,18 @@ const Post = ({ post }) => {
         <h2>{new Date(publishedAt).toDateString()}</h2>
       </div>
 
-      <div>
-        
-        {ytURL ? (
-          <div className="player">
-            <Player ytURL={ytURL} />
-          </div>
-        ) : (
-          <div className="image-box">
-            <img
-              src={urlFor(mainImage?.asset).auto("format").fit("scale").url()}
-              alt="baner image"
-            />
-          </div>
-        )}
+      {ytURL ? (
+          
+        <Player ytURL={ytURL} />
+      
+    ) : (
+      <div className="image-box">
+        <img
+          src={urlFor(mainImage?.asset).auto("format").fit("scale").url()}
+          alt="baner image"
+        />
       </div>
+    )}
 
       <div className="body-render">
         <PortableText value={body} components={ptComponents} />
@@ -108,6 +105,7 @@ const Post = ({ post }) => {
           width: 100%;
         }
         .body-render {
+          padding: 50px 0;
           width: 75%;
           margin: 0 auto;
           font-family: "Montserrat", sans-serif;
@@ -124,6 +122,7 @@ const Post = ({ post }) => {
           }
           .body-render {
             width: 100%;
+            margin: 50 auto;
           }
           h1 {
             margin: 0;

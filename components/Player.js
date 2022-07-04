@@ -1,33 +1,17 @@
-import { useState, useEffect } from "react";
+
 import ReactPlayer from "react-player/youtube";
 
 export default function Player({ ytURL }) {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  const updateMedia = () => {
-    if (window.innerWidth > 780) {
-      setIsDesktop(true);
-    } else {
-      setIsDesktop(false);
-    }
-  };
-
-  useEffect(() => {
-    if (window.innerWidth > 780) {
-      setIsDesktop(true);
-    } else {
-      setIsDesktop(false);
-    }
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  }, []);
+ 
   return (
-    <div>
+    <div className="player-container">
       <ReactPlayer
+        className="player"
+        style={{ position: "absolute", top: 0, left: 0 }}
         url={ytURL}
         playing={false}
         width={"100%"}
-        height={isDesktop ? 500 : "100%"}
+        height={"100%"}
         config={{
           playerVars: {
             autoplay: 1,
@@ -35,7 +19,15 @@ export default function Player({ ytURL }) {
           },
         }}
       />
-      
+      <style jsx>
+        {`
+          .player-container {
+            position: relative;
+            padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+          }
+         
+        `}
+      </style>
     </div>
   );
 }
