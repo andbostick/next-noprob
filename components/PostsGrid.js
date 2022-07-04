@@ -56,7 +56,7 @@ export default function PostsGrid({ articles }) {
         p {
           font-family: "Montserrat", sans-serif;
         }
-        section {
+        section container {
           padding: 2rem 0;
           display: grid;
           grid-template-columns: 30% 1fr;

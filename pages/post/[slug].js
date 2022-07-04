@@ -112,6 +112,8 @@ const Post = ({ post }) => {
           margin: 0 auto;
           font-family: "Montserrat", sans-serif;
         }
+
+        
         @media screen and (min-width: 1280px) {
           .player {
             margin: auto;
