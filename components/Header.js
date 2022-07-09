@@ -49,6 +49,9 @@ export default function Header({ title }) {
             <PortableText value={cardDesc} components={ptComponents} />
           </div>
         </div>
+        
+
+
       </main>
 
       <footer className="footer"></footer>
@@ -120,6 +123,7 @@ export default function Header({ title }) {
           font-size: 1.25rem;
           line-height: 1.5;
         }
+        
         @media (min-width: 768px) {
           .main {
             min-height: 100vh;
